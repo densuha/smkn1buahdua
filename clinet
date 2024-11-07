@@ -2,44 +2,25 @@
   <section class="wrapper bg-light">
     <div class="container pt-3 pt-md-6">
       <div class="px-lg-5 mb-4 mb-md-6">
-        <?php
-        $total = count($client);
-        $counter = 0;
-        ?>
-
-        <!-- First row - 5 photos -->
-        <div class="row gx-0 gx-md-8 gx-xl-9 gy-8 align-items-center mb-4">
+        <div class="row gx-0 gx-md-8 gx-xl-9 gy-8 align-items-center">
           <?php
-          for ($i = 0; $i < min(5, $total); $i++) {
-            $current_client = $client[$counter];
-            $counter++;
+          $count = 0;
+          foreach ($client as $client) {
+            if ($count >= 9) break; // Only show first 9 images
           ?>
-            <div class="col-md-2">
-              <figure class="px-1 px-md-0 px-lg-1 px-xl-2 px-xxl-5">
-                <img src="<?php echo base_url('assets/upload/image/' . $current_client->gambar) ?>" alt="<?php echo $current_client->nama_client ?>" />
+            <div class="col-4 col-md-3 col-lg-2 mb-4">
+              <figure class="px-2 px-md-2">
+                <img src="<?php echo base_url('assets/upload/image/' . $client->gambar) ?>" alt="<?php echo $client->nama_client ?>" class="img-fluid" />
               </figure>
             </div>
-          <?php } ?>
+            <!--/column -->
+          <?php
+            $count++;
+          } ?>
         </div>
-
-        <!-- Second row - 5 photos -->
-        <?php if ($counter < $total) { ?>
-          <div class="row gx-0 gx-md-8 gx-xl-9 gy-8 align-items-center">
-            <?php
-            for ($i = 0; $i < min(5, $total - $counter); $i++) {
-              $current_client = $client[$counter];
-              $counter++;
-            ?>
-              <div class="col-md-2">
-                <figure class="px-1 px-md-0 px-lg-1 px-xl-2 px-xxl-5">
-                  <img src="<?php echo base_url('assets/upload/image/' . $current_client->gambar) ?>" alt="<?php echo $current_client->nama_client ?>" />
-                </figure>
-              </div>
-            <?php } ?>
-          </div>
-        <?php } ?>
-
+        <!--/.row -->
       </div>
+      <!-- /div -->
     </div>
   </section>
 <?php } ?>
